@@ -1,19 +1,21 @@
-parserOptions: 
+parserOptions:
     ecmaVersion: 2020
     sourceType: module
-    ecmaFeatures: 
+    ecmaFeatures:
         jsx: true
-env: 
+env:
     browser: true
     node: true
     es6: true
-settings: 
-    react: 
+settings:
+    react:
         version: detect
-extends: 
+extends:
     - 'plugin:react/recommended'
     - 'plugin:prettier/recommended'
-plugins: 
+plugins:
     - 'react'
     - 'prettier'
-
+rules:
+    'react/react-in-jsx-scope': 'off'
+    'react/prop-types': 'off'
