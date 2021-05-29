@@ -95,7 +95,7 @@ const SignInPage = () => {
 
     return (
         <LoginLayout>
-            <StyledLogo />
+            <StyledLogo width="188" height="42" />
             <Title>Log in</Title>
             <Formik
                 initialValues={initialValue}

@@ -4,6 +4,11 @@ import NotchWhiteSpace from '../public/notchwhitespace.svg';
 import Notch from '../public/notch.svg';
 import { FlexColumnFullCentered, FlexRow } from './styles/flex';
 
+export const Container = styled.div`
+    max-width: 1232px;
+    margin: 0 auto;
+`;
+
 const ResponsiveImage = styled.img`
     width: 100%;
     height: auto;

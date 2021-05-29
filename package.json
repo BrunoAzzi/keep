@@ -1,36 +1,36 @@
 {
-  "name": "keep",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "prepare": "husky install"
-  },
-  "dependencies": {
-    "firebase-admin": "^9.9.0",
-    "formik": "^2.2.8",
-    "next": "^10.2.3",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "reset-css": "^5.0.1"
-  },
-  "devDependencies": {
-    "@svgr/webpack": "^5.5.0",
-    "eslint": "^7.5.0",
-    "eslint-config-prettier": "^6.11.0",
-    "eslint-plugin-prettier": "^3.1.4",
-    "eslint-plugin-react": "^7.20.3",
-    "eslint-plugin-react-hooks": "^4.2.0",
-    "firebase": "^8.6.2",
-    "husky": ">=6",
-    "lint-staged": "^10.2.11",
-    "next-firebase-auth": "^0.13.1",
-    "prettier": "2.0.5",
-    "styled-components": "^5.2.3"
-  },
-  "lint-staged": {
-    "*.js": "eslint --cache --fix"
-  }
+    "name": "keep",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "next dev",
+        "build": "next build",
+        "start": "next start",
+        "prepare": "husky install"
+    },
+    "dependencies": {
+        "firebase-admin": "^9.9.0",
+        "formik": "^2.2.8",
+        "next": "^10.2.3",
+        "react": "^17.0.2",
+        "react-dom": "^17.0.2",
+        "reset-css": "^5.0.1"
+    },
+    "devDependencies": {
+        "@svgr/webpack": "^5.5.0",
+        "eslint": "^7.5.0",
+        "eslint-config-prettier": "^6.11.0",
+        "eslint-plugin-prettier": "^3.1.4",
+        "eslint-plugin-react": "^7.20.3",
+        "eslint-plugin-react-hooks": "^4.2.0",
+        "firebase": "^8.6.2",
+        "husky": ">=6",
+        "lint-staged": "^10.2.11",
+        "next-firebase-auth": "^0.13.1",
+        "prettier": "2.0.5",
+        "styled-components": "^5.2.3"
+    },
+    "lint-staged": {
+        "*.js": "eslint --cache --fix"
+    }
 }
