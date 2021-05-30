@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { LoginLayout } from '../components/Layout';
+import { ImageLayout } from '../components/Layout/ImageLayout';
 
 const Description = styled.span`
     width: 100%;
@@ -25,16 +25,11 @@ const Input = styled.input`
 `;
 
 const SignupPage = () => (
-    <LoginLayout>
+    <ImageLayout>
         <Title>Log in</Title>
-        {/* <Description>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut
-                sagittis tincidunt varius. Curabitur pharetra justo non tellus
-                maximus accumsan.{' '}
-            </Description> */}
         <Input placeholder="email" />
         <Input placeholder="senha" />
-    </LoginLayout>
+    </ImageLayout>
 );
 
 export default SignupPage;

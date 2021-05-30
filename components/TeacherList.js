@@ -1,53 +1,30 @@
 import React from 'react';
-import { Pagination } from './Pagination';
 import { Wrapper, Table, Cell, HeaderCell, TableRow } from './Table';
 import { useTable, usePagination } from 'react-table';
-import moment from 'moment';
-import { DangerStatus, SuccessStatus } from './Status';
+import { Pagination } from './Pagination';
+import { BaseStatus } from './Status';
 
-moment.locale('pt-br');
-
-export const TeacherTable = ({ data }) => {
+export const TeacherList = ({ data = [] }) => {
     const columns = React.useMemo(
         () => [
             {
-                Header: 'Professor',
+                Header: 'Nome',
                 accessor: 'name'
             },
             {
-                Header: 'Especialidade',
-                accessor: 'class'
+                Header: 'Categoria',
+                accessor: 'categoryList',
+                Cell: ({ row }) => (
+                    <BaseStatus color={row.original.categoryList[0].color}>
+                        {row.original.categoryList[0].name}
+                    </BaseStatus>
+                )
             },
             {
-                Header: 'Local de residencia',
-                accessor: 'address'
-            },
-            {
-                Header: 'Status',
-                accessor: 'status',
-                Cell: row => {
-                    const status = row.row.original.status;
-
-                    if (status === 'Ativo')
-                        return (
-                            <SuccessStatus>
-                                {row.row.original.status}
-                            </SuccessStatus>
-                        );
-                    if (status == 'Desativado')
-                        return (
-                            <DangerStatus>
-                                {row.row.original.status}
-                            </DangerStatus>
-                        );
-                    return row.row.original.status;
-                }
-            },
-            {
-                Header: 'Finalização',
-                accessor: 'endDate',
+                id: 'actions',
+                accessor: 'actions',
                 collapse: true,
-                Cell: row => moment(row.row.original.endDate).calendar()
+                Cell: ({ original }) => 'delete'
             }
         ],
         []

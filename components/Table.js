@@ -32,8 +32,7 @@ export const Wrapper = styled.div`
     display: block;
     max-width: 100%;
     background: #ffffff;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    overflow: auto;
 `;
 
 export const Table = styled.table`

@@ -13,12 +13,13 @@ export const BaseCard = styled.div`
 const Wrapper = styled(BaseCard)`
     padding: 29px 15px;
     margin: 9px;
-    flex: 1 1 18%;
+    flex: 1 1 auto;
+    width: calc(20% - 18px);
 
     ${({ color }) => color && `border-bottom: 2px solid ${color};`}
 `;
 
-const Title = styled.span`
+const CardTitle = styled.span`
     font-size: 14px;
     line-height: 19px;
     letter-spacing: 0.01em;
@@ -58,7 +59,7 @@ export const Card = ({ title, value, accent, icon }) => (
         <IconWrapper color={accent}>{icon}</IconWrapper>
         <TextWrapper>
             <Value>{value}</Value>
-            <Title>{title}</Title>
+            <CardTitle>{title}</CardTitle>
         </TextWrapper>
     </Wrapper>
 );

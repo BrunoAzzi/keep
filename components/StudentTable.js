@@ -27,7 +27,7 @@ export const StudentTable = ({ data }) => {
                 accessor: 'status',
                 Cell: row => {
                     const status = row.row.original.status;
-                    console.log(status);
+
                     if (status === 'Em andamento')
                         return (
                             <SuccessStatus>

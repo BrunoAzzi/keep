@@ -1,33 +1,26 @@
 import styled, { css } from 'styled-components';
 import { FlexRowCentered } from './styles/flex';
 
-const baseStatus = css`
+const Dot = styled.div`
     margin-right: 18px;
     border-radius: 50%;
     width: 8px;
     height: 8px;
+
+    ${({ color }) => color && `background-color: ${color};`};
 `;
 
-const Success = styled.div`
-    ${baseStatus}
-    background-color: #1dc39a;
-`;
-
-const Danger = styled.div`
-    ${baseStatus}
-    background-color: #ff4c61;
-`;
-
-export const SuccessStatus = ({ children }) => (
+export const BaseStatus = ({ children, color = 'white' }) => (
     <FlexRowCentered>
-        <Success />
+        <Dot color={color} />
         {children}
     </FlexRowCentered>
 );
 
+export const SuccessStatus = ({ children }) => (
+    <BaseStatus color="#1dc39a">{children}</BaseStatus>
+);
+
 export const DangerStatus = ({ children }) => (
-    <FlexRowCentered>
-        <Danger />
-        {children}
-    </FlexRowCentered>
+    <BaseStatus color="#ff4c61">{children}</BaseStatus>
 );

@@ -3,14 +3,16 @@ import { Loader } from '../components/Loader';
 import Logo from '../public/images/Logo.svg';
 
 import styled from 'styled-components';
-import { LoginLayout } from '../components/Layout';
+import { ImageLayout } from '../components/Layout/ImageLayout';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Formik, Form, Field } from 'formik';
 import { FlexColumn } from '../components/styles/flex';
 
 const StyledLogo = styled(Logo)`
+    min-width: 188px;
+    min-height: 42px;
     align-self: flex-start;
     margin-bottom: 68px;
 `;
@@ -39,8 +41,10 @@ const Input = styled(Field)`
 `;
 
 const StyledForm = styled(Form)`
+    flex: 1 1 auto;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
 `;
 
@@ -94,7 +98,7 @@ const SignInPage = () => {
     };
 
     return (
-        <LoginLayout>
+        <ImageLayout>
             <StyledLogo width="188" height="42" />
             <Title>Log in</Title>
             <Formik
@@ -125,7 +129,7 @@ const SignInPage = () => {
                     </StyledForm>
                 )}
             </Formik>
-        </LoginLayout>
+        </ImageLayout>
     );
 };
 

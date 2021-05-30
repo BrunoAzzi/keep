@@ -42,44 +42,30 @@ const newTeacher = () => ({
     endDate: faker.date.future()
 });
 
-export function makeStudentData(...lens) {
-    const makeDataLevel = (depth = 0) => {
-        const len = lens[depth];
-        return range(len).map(d => {
-            return {
-                ...newStudent(),
-                subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
-            };
-        });
-    };
+const makeCategoryList = length =>
+    range(length).map(d => ({
+        name: faker.commerce.department(),
+        color: faker.internet.color()
+    }));
 
-    return makeDataLevel();
-}
+const newRealTeacher = () => ({
+    isActive: faker.datatype.boolean(),
+    name: fakerBr.name.findName(),
+    birthDate: faker.date.past(),
+    address: fakerBr.address.city(),
+    phone: fakerBr.phone.phoneNumber(),
+    email: fakerBr.internet.email(),
+    categoryList: makeCategoryList(faker.datatype.number({ min: 1, max: 5 }))
+});
 
-export function makeClassData(...lens) {
-    const makeDataLevel = (depth = 0) => {
-        const len = lens[depth];
-        return range(len).map(d => {
-            return {
-                ...newClass(),
-                subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
-            };
-        });
-    };
+export const makeStudentData = length =>
+    range(length).map(d => ({ ...newStudent() }));
 
-    return makeDataLevel();
-}
+export const makeClassData = length =>
+    range(length).map(d => ({ ...newClass() }));
 
-export function makeTeacherData(...lens) {
-    const makeDataLevel = (depth = 0) => {
-        const len = lens[depth];
-        return range(len).map(d => {
-            return {
-                ...newTeacher(),
-                subRows: lens[depth + 1] ? makeDataLevel(depth + 1) : undefined
-            };
-        });
-    };
+export const makeTeacherData = length =>
+    range(length).map(d => ({ ...newTeacher() }));
 
-    return makeDataLevel();
-}
+export const makeTeacherListData = length =>
+    range(length).map(d => ({ ...newRealTeacher() }));
