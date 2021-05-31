@@ -1,7 +1,6 @@
 import Head from 'next/head';
 import initAuth from '../lib/initAuth';
-import 'reset-css';
-import '../components/styles/global.css';
+import { GlobalStyle } from '../components/Layout/Global';
 
 initAuth();
 
@@ -19,7 +18,7 @@ function MyApp({ Component, pageProps }) {
                     content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"
                 />
             </Head>
-
+            <GlobalStyle />
             <Component {...pageProps} />
         </>
     );
