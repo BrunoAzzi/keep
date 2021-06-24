@@ -9,21 +9,24 @@ export const TableWithPagination = ({
     setPageSize,
     canPreviousPage,
     canNextPage,
+    size = 0,
     state: { pageIndex, pageSize },
     ...other
 }) => (
     <Table {...other}>
-        <Pagination
-            pageCount={pageCount}
-            pageOptions={pageOptions}
-            pageIndex={pageIndex}
-            gotoPage={gotoPage}
-            previousPage={previousPage}
-            nextPage={nextPage}
-            pageSize={pageSize}
-            setPageSize={setPageSize}
-            canPreviousPage={canPreviousPage}
-            canNextPage={canNextPage}
-        />
+        {size > pageSize && (
+            <Pagination
+                pageCount={pageCount}
+                pageOptions={pageOptions}
+                pageIndex={pageIndex}
+                gotoPage={gotoPage}
+                previousPage={previousPage}
+                nextPage={nextPage}
+                pageSize={pageSize}
+                setPageSize={setPageSize}
+                canPreviousPage={canPreviousPage}
+                canNextPage={canNextPage}
+            />
+        )}
     </Table>
 );

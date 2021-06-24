@@ -41,7 +41,10 @@ export const ClassTable = ({ data }) => {
                 Header: 'Categoria',
                 accessor: 'category',
                 collapse: true,
-                Cell: row => <Tag>{row.row.original.category}</Tag>
+                Cell: row =>
+                    row.row.original.categoryList.map(category => (
+                        <Tag key={category}>{category}</Tag>
+                    ))
             }
         ],
         [data.name]
@@ -49,5 +52,5 @@ export const ClassTable = ({ data }) => {
 
     const tableProps = useTable({ columns, data, initialState }, usePagination);
 
-    return <TableWithPagination {...tableProps} />;
+    return <TableWithPagination size={data.length} {...tableProps} />;
 };

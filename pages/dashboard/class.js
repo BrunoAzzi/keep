@@ -1,30 +1,45 @@
 import React from 'react';
-import {
-    useAuthUser,
-    withAuthUser,
-    AuthAction,
-    getFirebaseAdmin
-} from 'next-firebase-auth';
-import { makeClassData } from '../../components/makeData';
+import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth';
 import { ClassTable, GaugeGroup } from '@components/dashboard';
 import { Card, ContainerLayout, Section, Content } from '@components/index';
 import { ActionNav } from '@components/dashboard';
-import { gaugeList } from 'api/gauge';
+import { classCollection, handleClassList } from 'serialize/class';
+import { teacherCollection } from 'serialize/teacher';
+import { studentCollection } from 'serialize/student';
 
 export async function getServerSideProps() {
-    const db = getFirebaseAdmin().firestore();
-    const doc = await db.collection('class').get();
-
-    // const classList = makeClassData(20);
+    const classListResponse = await classCollection.get();
+    const classList = await handleClassList(classListResponse.docs, {
+        shallow: false
+    });
+    const teacherList = await teacherCollection.get();
+    const studentList = await studentCollection.get();
 
     return {
         props: {
-            classList: doc
+            classList,
+            gaugeList: [
+                {
+                    indicator: 'Estudantes',
+                    highlight: '#6f52ed',
+                    value: studentList.docs.length
+                },
+                {
+                    indicator: 'Professores',
+                    highlight: '#FFCA32',
+                    value: teacherList.docs.length
+                },
+                {
+                    indicator: 'Turmas',
+                    highlight: '#21B8C7',
+                    value: classList.length
+                }
+            ]
         }
     };
 }
 
-const DashboardClassList = ({ classList = [] }) => {
+const DashboardClassList = ({ classList = [], gaugeList = [] }) => {
     const AuthUser = useAuthUser();
 
     return (

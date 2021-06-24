@@ -1,35 +1,43 @@
 import React from 'react';
-import {
-    useAuthUser,
-    withAuthUser,
-    AuthAction,
-    getFirebaseAdmin
-} from 'next-firebase-auth';
+import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth';
 import { StudentTable, GaugeGroup } from '@components/dashboard';
 import { Card, ContainerLayout, Section, Content } from '@components/index';
 import { ActionNav } from '@components/dashboard';
-import { gaugeList } from 'api/gauge';
+import { handleStudentList, studentCollection } from 'serialize/student';
+import { teacherCollection } from 'serialize/teacher';
+import { classCollection } from 'serialize/class';
 
 export async function getServerSideProps() {
-    const db = getFirebaseAdmin().firestore();
-    const { docs } = await db.collection('student').get();
-
-    const list = docs.map(a => {
-        const student = a.data();
-        return {
-            ...student,
-            endDate: new Date(student.endDate._seconds * 1000).toString()
-        };
-    });
+    const studentListResponse = await studentCollection.get();
+    const studentList = await handleStudentList(studentListResponse.docs);
+    const teacherList = await teacherCollection.get();
+    const classList = await classCollection.get();
 
     return {
         props: {
-            studentList: list
+            studentList,
+            gaugeList: [
+                {
+                    indicator: 'Estudantes',
+                    highlight: '#6f52ed',
+                    value: studentList.length
+                },
+                {
+                    indicator: 'Professores',
+                    highlight: '#FFCA32',
+                    value: teacherList.docs.length
+                },
+                {
+                    indicator: 'Turmas',
+                    highlight: '#21B8C7',
+                    value: classList.docs.length
+                }
+            ]
         }
     };
 }
 
-const DashboardClassList = ({ studentList = [] }) => {
+const DashboardClassList = ({ studentList = [], gaugeList = [] }) => {
     const AuthUser = useAuthUser();
 
     return (

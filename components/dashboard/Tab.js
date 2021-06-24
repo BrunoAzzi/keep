@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { FlexRowSpaceBetween } from '@components/styles/flex';
 
@@ -15,7 +16,7 @@ const activeTabStyle = css`
     font-weight: 800;
 `;
 
-export const Tab = styled.a`
+export const StyledLink = styled.a`
     margin: 0 30px;
     font-size: 17px;
     line-height: 28px;
@@ -28,3 +29,9 @@ export const Tab = styled.a`
 
     ${({ active }) => active && activeTabStyle}
 `;
+
+export const Tab = ({ href, ...other }) => (
+    <Link href={href} passHref>
+        <StyledLink {...other} />
+    </Link>
+);

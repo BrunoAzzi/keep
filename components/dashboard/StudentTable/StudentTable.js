@@ -40,5 +40,5 @@ export const StudentTable = ({ data }) => {
 
     const tableProps = useTable({ columns, data, initialState }, usePagination);
 
-    return <TableWithPagination {...tableProps} />;
+    return <TableWithPagination size={data.length} {...tableProps} />;
 };

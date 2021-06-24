@@ -3,6 +3,7 @@ import moment from 'moment';
 import { useTable, usePagination } from 'react-table';
 import { TableWithPagination } from '../../index';
 import { StatusCell } from './StatusCell';
+import { Tag } from '@components/Tag';
 
 moment.locale('pt-br');
 
@@ -16,8 +17,12 @@ export const TeacherTable = ({ data }) => {
                 accessor: 'name'
             },
             {
-                Header: 'Especialidade',
-                accessor: 'class'
+                Header: 'Especialidades',
+                accessor: 'categoryList',
+                Cell: row =>
+                    row.row.original.categoryList.map(category => (
+                        <Tag key={category}>{category}</Tag>
+                    ))
             },
             {
                 Header: 'Local de residencia',
@@ -40,5 +45,5 @@ export const TeacherTable = ({ data }) => {
 
     const tableProps = useTable({ columns, data, initialState }, usePagination);
 
-    return <TableWithPagination {...tableProps} />;
+    return <TableWithPagination size={data.length} {...tableProps} />;
 };

@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Tag = styled.span`
+    margin: 0 4px;
     background-color: #595cff;
     padding: 6px 10px;
     border-radius: 4px;
