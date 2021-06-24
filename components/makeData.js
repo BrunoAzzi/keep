@@ -23,14 +23,14 @@ const newStudent = () => ({
     class: faker.commerce.department(),
     address: fakerBr.address.city(),
     status: Math.random() > 0.5 ? 'Em andamento' : 'Finalizado',
-    endDate: faker.date.future()
+    endDate: faker.date.future().toString()
 });
 
 const newClass = () => ({
     name: fakerBr.name.findName(),
     studentList: newStudentList(faker.image.avatar),
     progress: faker.datatype.number({ min: 0, max: 100 }),
-    endDate: faker.date.future(),
+    endDate: faker.date.future().toString(),
     category: faker.commerce.product()
 });
 
@@ -39,7 +39,7 @@ const newTeacher = () => ({
     class: faker.commerce.department(),
     address: fakerBr.address.city(),
     status: Math.random() > 0.66 ? 'Ativo' : 'Desativado',
-    endDate: faker.date.future()
+    endDate: faker.date.future().toString()
 });
 
 const makeCategoryList = length =>
@@ -51,7 +51,7 @@ const makeCategoryList = length =>
 const newRealTeacher = () => ({
     isActive: faker.datatype.boolean(),
     name: fakerBr.name.findName(),
-    birthDate: faker.date.past(),
+    birthDate: faker.date.past().toString(),
     address: fakerBr.address.city(),
     phone: fakerBr.phone.phoneNumber(),
     email: fakerBr.internet.email(),

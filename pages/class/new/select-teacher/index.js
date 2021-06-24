@@ -1,12 +1,17 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth';
-import { DashboardLayout, ImageLayout } from '../../components/Layout';
-import { Title } from '../../components/Title';
-import { BaseCard } from '../../components/Card';
-import { TeacherList } from '../../components/TeacherList';
-import { makeTeacherListData } from '../../components/makeData';
-import { FlexColumn } from '../../components/styles/flex';
+
+import {
+    TeacherList,
+    BaseCard,
+    Title,
+    DashboardLayout,
+    ImageLayout
+} from '@components/index';
+
+import { makeTeacherListData } from '@components/makeData';
+import { FlexColumn } from '@styles/flex';
 
 const CardTitle = styled.h2`
     font-weight: 600;

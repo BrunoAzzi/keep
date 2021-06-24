@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import Notch from '../../public/notch.svg';
-import { FlexColumn, FlexColumnFullCentered, FlexRow } from '../styles/flex';
+import { FlexColumn, FlexRow } from '../styles/flex';
 
 const BackgroundImage = styled.div`
     width: 100%;

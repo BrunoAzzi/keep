@@ -5,3 +5,11 @@ export const Container = styled.div`
     width: 100%;
     margin: 0 auto;
 `;
+
+export const Section = styled.section`
+    margin: 54px 0;
+`;
+
+export const Content = styled.div`
+    margin-top: 48px;
+`;

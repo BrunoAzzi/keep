@@ -16,6 +16,10 @@ export const spaceBetween = css`
     justify-content: space-between;
 `;
 
+export const spaceAround = css`
+    justify-content: space-around;
+`;
+
 export const mainAxisCentered = css`
     align-items: center;
 `;
@@ -90,4 +94,8 @@ export const FlexColumnFullCentered = styled.div`
 
 export const FlexColumnSpaceBetween = styled.div`
     ${flexColumn} ${spaceBetween};
+`;
+
+export const FlexColumnSpaceAround = styled.div`
+    ${flexColumn} ${spaceAround};
 `;

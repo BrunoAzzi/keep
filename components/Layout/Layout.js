@@ -1,6 +1,5 @@
 import styled from 'styled-components';
-import { Header } from '../Header';
-import { Container } from './Container';
+import { Header, Container } from '@components/index';
 
 const Wrapper = styled.div`
     display: flex;
@@ -10,15 +9,15 @@ const Wrapper = styled.div`
     overflow: auto;
 `;
 
-export const DashboardLayout = ({ children, user }) => (
+export const Layout = ({ children, user }) => (
     <Wrapper>
         <Header user={user} />
         {children}
     </Wrapper>
 );
 
-export const DashboardContainerLayout = ({ children, user }) => (
-    <DashboardLayout user={user}>
+export const ContainerLayout = ({ children, user }) => (
+    <Layout user={user}>
         <Container>{children}</Container>
-    </DashboardLayout>
+    </Layout>
 );
