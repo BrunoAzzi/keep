@@ -16,6 +16,10 @@ export const ClassTable = ({ data }) => {
                 accessor: 'name'
             },
             {
+                Header: 'Professor',
+                accessor: 'teacher'
+            },
+            {
                 Header: 'Alunos',
                 accessor: 'studentList',
                 collapse: true,
