@@ -2,28 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth';
 
-import {
-    TeacherList,
-    BaseCard,
-    Title,
-    DashboardLayout,
-    ImageLayout
-} from '@components/index';
-
-import { makeTeacherListData } from '@components/makeData';
 import { FlexColumn } from '@styles/flex';
+import { TeacherList } from '@components/TeacherList';
+import { Card, Title, Layout, ImageLayout, CardTitle } from '@components/index';
+import { handleTeacherList, teacherCollection } from 'serialize/teacher';
+import router from 'next/router';
+import { Class } from 'service/routes';
 
-const CardTitle = styled.h2`
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 28px;
-
-    color: #121212;
-`;
-
-const WhiteCard = styled(BaseCard)`
-    width: 100%;
-    background: white;
+const WhiteCard = styled(Card)`
     max-height: 70vh;
 `;
 
@@ -31,22 +17,34 @@ const Content = styled(FlexColumn)`
     width: 100%;
 `;
 
-const CreateClass = () => {
+export async function getServerSideProps() {
+    const teacherListResponse = await teacherCollection.get();
+    const teacherList = await handleTeacherList(teacherListResponse.docs);
+
+    return { props: { teacherList } };
+}
+
+const CreateClass = ({ teacherList }) => {
     const AuthUser = useAuthUser();
-    const data = React.useMemo(() => makeTeacherListData(20), []);
+
+    const navigateTo = path => row => router.push(path + row.original.id);
 
     return (
-        <DashboardLayout user={AuthUser}>
-            <ImageLayout>
+        <Layout user={AuthUser}>
+            <ImageLayout image="/images/login.png">
                 <Title>Criar Turma</Title>
                 <WhiteCard>
                     <Content>
                         <CardTitle>Selecionar professor</CardTitle>
-                        <TeacherList data={data} />
+                        <TeacherList
+                            data={teacherList}
+                            clickable
+                            onRowClick={navigateTo(Class.Create.SetupClass)}
+                        />
                     </Content>
                 </WhiteCard>
             </ImageLayout>
-        </DashboardLayout>
+        </Layout>
     );
 };
 

@@ -7,7 +7,9 @@ import { ImageLayout } from '../components/Layout/ImageLayout';
 import firebase from 'firebase/app';
 import 'firebase/auth';
 
-import { Formik, Form, Field } from 'formik';
+import { Formik } from 'formik';
+import { Input } from '@components/Input';
+import { Form } from '@components/Form';
 import { FlexColumn } from '../components/styles/flex';
 
 const StyledLogo = styled(Logo)`
@@ -27,25 +29,6 @@ const Description = styled.span`
 
 const Title = styled(Description)`
     font-weight: bold;
-`;
-
-const Input = styled(Field)`
-    appearence: none;
-    background: #ffffff;
-    border: 0.5px solid #c4c4c4;
-    box-sizing: border-box;
-    border-radius: 4px;
-    padding: 11px 13px;
-    margin: 10px 0;
-    width: 100%;
-`;
-
-const StyledForm = styled(Form)`
-    flex: 1 1 auto;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    width: 100%;
 `;
 
 const InputListWrapper = styled(FlexColumn)`
@@ -98,7 +81,7 @@ const SignInPage = () => {
     };
 
     return (
-        <ImageLayout>
+        <ImageLayout image="/images/login.png">
             <StyledLogo width="188" height="42" />
             <Title>Log in</Title>
             <Formik
@@ -107,7 +90,7 @@ const SignInPage = () => {
                 onSubmit={handleSubmit}
             >
                 {({ isSubmitting }) => (
-                    <StyledForm>
+                    <Form>
                         <InputListWrapper>
                             <Input
                                 type="email"
@@ -126,7 +109,7 @@ const SignInPage = () => {
                         <SubmitButton disabled={isSubmitting}>
                             Entrar
                         </SubmitButton>
-                    </StyledForm>
+                    </Form>
                 )}
             </Formik>
         </ImageLayout>

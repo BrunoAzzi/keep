@@ -20,6 +20,7 @@ export const handleTeacherReference = async teacherReference => {
 
     return {
         ...serializeTeacher(teacherData),
+        id: teacherReference.id,
         classList
     };
 };

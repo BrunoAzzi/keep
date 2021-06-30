@@ -5,34 +5,45 @@ export const Table = ({
     getTableBodyProps,
     headerGroups,
     prepareRow,
+    onRowClick = () => {},
     page,
-    children
+    children,
+    head = true,
+    clickable = false
 }) => (
     <Wrapper>
         <Base {...getTableProps()}>
-            <thead>
-                {headerGroups.map(headerGroup => (
-                    <TableRow
-                        key={headerGroup.id}
-                        {...headerGroup.getHeaderGroupProps()}
-                    >
-                        {headerGroup.headers.map(column => (
-                            <HeaderCell
-                                key={column.key}
-                                {...column.getHeaderProps()}
-                                collapse={column.collapse}
-                            >
-                                {column.render('Header')}
-                            </HeaderCell>
-                        ))}
-                    </TableRow>
-                ))}
-            </thead>
+            {head && (
+                <thead>
+                    {console.log(headerGroups)}
+                    {headerGroups.map(headerGroup => (
+                        <TableRow
+                            key={headerGroup.id}
+                            {...headerGroup.getHeaderGroupProps()}
+                        >
+                            {headerGroup.headers.map(column => (
+                                <HeaderCell
+                                    key={column.key}
+                                    {...column.getHeaderProps()}
+                                    collapse={column.collapse}
+                                >
+                                    {column.render('Header')}
+                                </HeaderCell>
+                            ))}
+                        </TableRow>
+                    ))}
+                </thead>
+            )}
             <tbody {...getTableBodyProps()}>
                 {page.map((row, i) => {
                     prepareRow(row);
                     return (
-                        <TableRow key={row.id} {...row.getRowProps()}>
+                        <TableRow
+                            key={row.id}
+                            {...row.getRowProps()}
+                            onClick={() => onRowClick(row)}
+                            clickable={clickable}
+                        >
                             {row.cells.map(cell => {
                                 return (
                                     <Cell

@@ -11,4 +11,9 @@ export const Button = styled.button`
     color: white;
 
     padding: 16px 18px;
+    cursor: pointer;
+
+    &:disabled {
+        background: #f5f6ff;
+    }
 `;

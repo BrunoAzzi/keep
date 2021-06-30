@@ -41,7 +41,13 @@ export const Base = styled.table`
 `;
 
 export const TableRow = styled.tr`
-    :last-child {
+    &:hover {
+        background: #fafbfd;
+    }
+
+    ${({ clickable }) => clickable && `cursor: pointer;`}
+
+    &:last-child {
         ${Cell} {
             border-bottom: 0;
         }

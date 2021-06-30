@@ -1,6 +1,7 @@
 export const Class = {
     Create: {
-        SelectTeacher: '/class/new/select-teacher'
+        SelectTeacher: '/class/new/select-teacher',
+        SetupClass: '/class/new/select-teacher/'
     }
 };
 

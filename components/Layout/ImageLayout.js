@@ -21,15 +21,20 @@ const LayoutWrapper = styled(FlexRow)`
     overflow: hidden;
 `;
 
+// min-width: 550px;
+
 const FormContainer = styled(FlexColumn)`
     box-sizing: border-box;
-    padding: 50px 50px 0 100px;
+    padding: 50px;
+    padding-left: 100px;
     z-index: 9;
     margin-right: -5%;
-    min-width: 550px;
+    min-width: 433px;
     max-width: 50vw;
     height: 100%;
     background-color: #f5f9f9;
+
+    overflow-y: auto;
 `;
 
 const FullHeight = styled.div`
@@ -39,18 +44,25 @@ const FullHeight = styled.div`
     min-width: 256px;
 `;
 
-const Content = styled(FlexRow)`
+const SideContent = styled(FlexRow)`
     z-index: 1;
 `;
 
-export const ImageLayout = props => (
+const Content = styled(FlexColumn)`
+    flex: 1 1 auto;
+    padding: 20px;
+    padding-right: 50px;
+`;
+
+export const ImageLayout = ({ image, content, ...other }) => (
     <LayoutWrapper>
-        <BackgroundImage image="/images/login.png" />
-        <Content>
-            <FormContainer {...props} />
+        {image && <BackgroundImage image={image} />}
+        <SideContent>
+            <FormContainer {...other} />
             <FullHeight>
                 <Notch />
             </FullHeight>
-        </Content>
+        </SideContent>
+        {content && <Content>{content}</Content>}
     </LayoutWrapper>
 );

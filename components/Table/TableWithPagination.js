@@ -10,10 +10,11 @@ export const TableWithPagination = ({
     canPreviousPage,
     canNextPage,
     size = 0,
+    clickable,
     state: { pageIndex, pageSize },
     ...other
 }) => (
-    <Table {...other}>
+    <Table {...other} clickable={clickable}>
         {size > pageSize && (
             <Pagination
                 pageCount={pageCount}

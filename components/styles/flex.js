@@ -8,6 +8,10 @@ export const directionRow = css`
     flex-direction: row;
 `;
 
+export const directionRowReverse = css`
+    flex-direction: row-reverse;
+`;
+
 export const directionColumn = css`
     flex-direction: column;
 `;
@@ -36,6 +40,10 @@ export const flexRow = css`
     ${flex} ${directionRow};
 `;
 
+export const flexRowReverse = css`
+    ${flex} ${directionRowReverse}
+`;
+
 export const flexRowWrap = css`
     ${flexRow} ${flexWrap};
 `;
@@ -58,6 +66,10 @@ export const flexRowFullCentered = css`
 
 export const FlexRow = styled.div`
     ${flexRow};
+`;
+
+export const FlexRowReverse = styled.div`
+    ${flexRowReverse};
 `;
 
 export const FlexRowWrap = styled.div`
