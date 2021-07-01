@@ -1,5 +1,6 @@
 import { getFirebaseAdmin } from 'next-firebase-auth';
 import { handleStudentList } from './student';
+import { handleTeacherReference, serializeTeacher } from './teacher';
 
 export const classCollection = getFirebaseAdmin()
     .firestore()
@@ -7,7 +8,11 @@ export const classCollection = getFirebaseAdmin()
 
 export const serializeClass = classData => ({
     ...classData,
-    endDate: new Date(classData.endDate._seconds * 1000).toString()
+    endDate: new Date(classData.endDate._seconds * 1000).toString(),
+    startDate: new Date(classData.startDate._seconds * 1000).toString(),
+    progress:
+        ((Date.now() / 1000 - classData.startDate._seconds) * 100) /
+        (classData.endDate._seconds - classData.startDate._seconds)
 });
 
 export const handleClassReference = async (
@@ -24,13 +29,18 @@ export const handleClassReference = async (
 
     if (config.shallow) {
         delete serializedClass.studentList;
+        delete serializedClass.teacher;
         return serializedClass;
     }
 
     const studentList = await handleStudentList(classData.studentList);
+    const teacherData = await handleTeacherReference(
+        await classData.teacher.get()
+    );
 
     return {
         ...serializedClass,
+        teacher: serializeTeacher(teacherData),
         studentList
     };
 };

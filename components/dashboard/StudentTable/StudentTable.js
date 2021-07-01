@@ -3,8 +3,16 @@ import moment from 'moment';
 import { useTable, usePagination } from 'react-table';
 import { TableWithPagination } from '../../index';
 import { StatusCell } from './StatusCell';
+import { FlexRowCentered } from '@components/styles/flex';
+import { Avatar } from '@components/Avatar';
+import styled from 'styled-components';
+import { Tag } from '@components/Tag';
 
 moment.locale('pt-br');
+
+const AvatarWithMargin = styled(Avatar)`
+    margin-right: 8px;
+`;
 
 export const StudentTable = ({ data }) => {
     const initialState = { pageIndex: 0, pageSize: 7 };
@@ -13,11 +21,21 @@ export const StudentTable = ({ data }) => {
         () => [
             {
                 Header: 'Aluno',
-                accessor: 'name'
+                accessor: 'name',
+                Cell: ({ row }) => (
+                    <FlexRowCentered>
+                        <AvatarWithMargin image={row.original.avatar} />
+                        <span>{row.original.name}</span>
+                    </FlexRowCentered>
+                )
             },
             {
-                Header: 'Nome da turma',
-                accessor: 'class'
+                Header: 'Turmas',
+                accessor: 'classList',
+                Cell: row =>
+                    row.row.original.classList.map(classData => (
+                        <Tag key={classData.id}>{classData.name}</Tag>
+                    ))
             },
             {
                 Header: 'Local de residencia',

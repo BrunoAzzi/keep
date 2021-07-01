@@ -1,7 +1,13 @@
 import React from 'react';
 import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth';
 import { TeacherTable, GaugeGroup } from '@components/dashboard';
-import { Card, ContainerLayout, Section, Content } from '@components/index';
+import {
+    Card,
+    ContainerLayout,
+    Section,
+    Content,
+    Button
+} from '@components/index';
 import { ActionNav } from '@components/dashboard';
 import { handleTeacherList, teacherCollection } from 'serialize/teacher';
 import { studentCollection } from 'serialize/student';
@@ -45,7 +51,11 @@ const DashboardClassList = ({ teacherList = [], gaugeList = [] }) => {
             <GaugeGroup data={gaugeList} />
             <Section>
                 <Card>
-                    <ActionNav />
+                    <ActionNav>
+                        <Button as="a" href={Teacher.Create}>
+                            Inserir Professor
+                        </Button>
+                    </ActionNav>
                     <Content>
                         <TeacherTable data={teacherList} />
                     </Content>

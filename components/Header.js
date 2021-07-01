@@ -52,7 +52,10 @@ export const Header = ({ user }) => {
     return (
         <Wrapper>
             <StyledContainer>
-                <Logo width="115" height="26" />
+                <a href="/">
+                    <Logo width="115" height="26" />
+                </a>
+
                 <UserSection>
                     {user.displayName || user.email || 'Loading'}
                     <Carret isOpen={isOpen} />

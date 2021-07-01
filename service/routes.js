@@ -5,6 +5,14 @@ export const Class = {
     }
 };
 
+export const Teacher = {
+    Create: '/teacher/new'
+};
+
+export const Student = {
+    Create: '/student/new'
+};
+
 export const Dashboard = {
     List: {
         Student: '/dashboard/student',

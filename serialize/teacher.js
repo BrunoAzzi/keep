@@ -10,20 +10,36 @@ export const serializeTeacher = teacherData => ({
     endDate: new Date(teacherData.endDate._seconds * 1000).toString()
 });
 
-export const handleTeacherReference = async teacherReference => {
+export const handleTeacherReference = async (
+    teacherReference,
+    config = { shallow: true }
+) => {
     // const teacherResponse = teacherReference.ref
     //     ? await teacherReference.ref.get() // When it is a QueryDocumentSnapshot we get its DocumentReference before get
     //     : await teacherReference.get(); //When it is a DocumentReference there is no need to prepare
 
     const teacherData = await teacherReference.data();
+    const serializedTeacher = {
+        ...serializeTeacher(teacherData),
+        id: teacherReference.id
+    };
+
+    if (config.shallow) {
+        delete serializedTeacher.classList;
+        return serializedTeacher;
+    }
+
     const classList = await handleClassList(teacherData.classList);
 
     return {
-        ...serializeTeacher(teacherData),
-        id: teacherReference.id,
+        ...serializedTeacher,
         classList
     };
 };
 
-export const handleTeacherList = async teacherReferenceList =>
-    Promise.all(teacherReferenceList.map(handleTeacherReference));
+export const handleTeacherList = async (teacherReferenceList, config) =>
+    Promise.all(
+        teacherReferenceList.map(teacherReference =>
+            handleTeacherReference(teacherReference, config)
+        )
+    );

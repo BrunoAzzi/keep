@@ -3,11 +3,11 @@ import { Class, Dashboard } from '../../service/routes';
 import { TabManager, Tab, Actions } from './index';
 import { useRouter } from 'next/router';
 
-export const ActionNav = () => {
+export const ActionNav = ({ children, ...other }) => {
     const router = useRouter();
 
     return (
-        <Actions>
+        <Actions {...other}>
             <TabManager>
                 <Tab
                     active={router.pathname === Dashboard.List.Class}
@@ -28,9 +28,7 @@ export const ActionNav = () => {
                     Professores
                 </Tab>
             </TabManager>
-            <Button as="a" href={Class.Create.SelectTeacher}>
-                Criar nova turma
-            </Button>
+            {children}
         </Actions>
     );
 };

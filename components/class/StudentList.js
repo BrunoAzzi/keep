@@ -15,12 +15,28 @@ const Title = styled.span`
     margin-left: 10px;
 `;
 
-export const StudentList = ({ data }) => {
+export const StudentList = ({ data, onSelect }) => {
+    const selectedList = [];
+
+    const toggleInList = ({ target }) => {
+        const { checked, name } = target;
+
+        checked
+            ? onSelect([...selectedList, name])
+            : onSelect(selectedList.filter(studentId => studentId !== name));
+    };
+
     const columns = useMemo(
         () => [
             {
                 accessor: 'action',
-                Cell: row => <input type="checkbox" />,
+                Cell: ({ row }) => (
+                    <input
+                        name={row.original.id}
+                        type="checkbox"
+                        onChange={toggleInList}
+                    />
+                ),
                 collapse: true
             },
             {

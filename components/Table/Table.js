@@ -15,7 +15,6 @@ export const Table = ({
         <Base {...getTableProps()}>
             {head && (
                 <thead>
-                    {console.log(headerGroups)}
                     {headerGroups.map(headerGroup => (
                         <TableRow
                             key={headerGroup.id}

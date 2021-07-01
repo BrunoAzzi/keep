@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth';
 import { Layout, ImageLayout } from '@components/Layout';
 import { Title } from '@components/Title';

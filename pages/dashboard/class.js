@@ -1,11 +1,18 @@
 import React from 'react';
 import { useAuthUser, withAuthUser, AuthAction } from 'next-firebase-auth';
 import { ClassTable, GaugeGroup } from '@components/dashboard';
-import { Card, ContainerLayout, Section, Content } from '@components/index';
+import {
+    Card,
+    ContainerLayout,
+    Section,
+    Content,
+    Button
+} from '@components/index';
 import { ActionNav } from '@components/dashboard';
 import { classCollection, handleClassList } from 'serialize/class';
 import { teacherCollection } from 'serialize/teacher';
 import { studentCollection } from 'serialize/student';
+import { Class } from 'service/routes';
 
 export async function getServerSideProps() {
     const classListResponse = await classCollection.get();
@@ -47,7 +54,11 @@ const DashboardClassList = ({ classList = [], gaugeList = [] }) => {
             <GaugeGroup data={gaugeList} />
             <Section>
                 <Card>
-                    <ActionNav />
+                    <ActionNav>
+                        <Button as="a" href={Class.Create.SelectTeacher}>
+                            Criar nova turma
+                        </Button>
+                    </ActionNav>
                     <Content>
                         <ClassTable data={classList} />
                     </Content>

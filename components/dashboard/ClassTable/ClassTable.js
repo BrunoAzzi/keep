@@ -1,10 +1,17 @@
 import React from 'react';
 import moment from 'moment';
+import styled from 'styled-components';
 import { useTable, usePagination } from 'react-table';
 import { ProgressBar, Tag, TableWithPagination } from '../../index';
 import { StudentListCell } from './StudentListCell';
+import { Avatar } from '@components/Avatar';
+import { FlexRowCentered } from '@components/styles/flex';
 
 moment.locale('pt-br');
+
+const AvatarWithMargin = styled(Avatar)`
+    margin-right: 8px;
+`;
 
 export const ClassTable = ({ data }) => {
     const initialState = { pageIndex: 0, pageSize: 7 };
@@ -13,11 +20,21 @@ export const ClassTable = ({ data }) => {
         () => [
             {
                 Header: 'Nome da Turma',
-                accessor: 'name'
+                accessor: 'name',
+                collapse: true
             },
             {
                 Header: 'Professor',
-                accessor: 'teacher'
+                collapse: true,
+                accessor: 'teacher',
+                Cell: row => (
+                    <FlexRowCentered>
+                        <AvatarWithMargin
+                            image={row.row.original.teacher.avatar}
+                        />
+                        <span>{row.row.original.teacher.name}</span>
+                    </FlexRowCentered>
+                )
             },
             {
                 Header: 'Alunos',

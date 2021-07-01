@@ -52,6 +52,7 @@ const Content = styled(FlexColumn)`
     flex: 1 1 auto;
     padding: 20px;
     padding-right: 50px;
+    overflow-x: auto;
 `;
 
 export const ImageLayout = ({ image, content, ...other }) => (

@@ -1,4 +1,5 @@
 import { getFirebaseAdmin } from 'next-firebase-auth';
+import { classCollection } from './class';
 
 export const studentCollection = getFirebaseAdmin()
     .firestore()
@@ -16,7 +17,18 @@ export const handleStudentReference = async studentReference => {
         : await studentReference.get(); //When it is a DocumentReference there is no need to prepare
 
     const student = await studentResponse.data();
-    return serializeStudent(student);
+
+    const classList = await classCollection
+        .where('studentList', 'array-contains', studentResponse.ref)
+        .get();
+
+    return serializeStudent({
+        ...student,
+        classList: classList.docs.map(doc => ({
+            name: doc.data().name
+        })),
+        id: studentResponse.id
+    });
 };
 
 export const handleStudentList = async studentReferenceList =>
