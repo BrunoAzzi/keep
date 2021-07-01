@@ -12,6 +12,7 @@ import { ActionNav } from '@components/dashboard';
 import { handleTeacherList, teacherCollection } from 'serialize/teacher';
 import { studentCollection } from 'serialize/student';
 import { classCollection } from 'serialize/class';
+import { Teacher } from 'service/routes';
 
 export async function getServerSideProps() {
     const teacherListResponse = await teacherCollection.get();
