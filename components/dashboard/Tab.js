@@ -20,6 +20,7 @@ export const StyledLink = styled.a`
     margin: 0 30px;
     font-size: 17px;
     line-height: 28px;
+    text-decoration: none;
 
     display: flex;
     align-items: center;
