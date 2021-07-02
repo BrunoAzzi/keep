@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 import { Header, Container } from '@components/index';
+import { FlexColumn } from '@components/styles/flex';
+import { StudentSidebarProvider } from '@components/sidebars/StudentSidebar';
 
-const Wrapper = styled.div`
-    display: flex;
+const Wrapper = styled(FlexColumn)`
     height: 100%;
-    flex-direction: column;
     background-color: #f5f9f9;
     overflow: auto;
 `;
@@ -12,12 +12,14 @@ const Wrapper = styled.div`
 export const Layout = ({ children, user }) => (
     <Wrapper>
         <Header user={user} />
-        {children}
+        <StudentSidebarProvider>{children}</StudentSidebarProvider>
     </Wrapper>
 );
 
-export const ContainerLayout = ({ children, user }) => (
-    <Layout user={user}>
-        <Container>{children}</Container>
-    </Layout>
-);
+export const ContainerLayout = ({ children, user }) => {
+    return (
+        <Layout user={user}>
+            <Container>{children}</Container>
+        </Layout>
+    );
+};

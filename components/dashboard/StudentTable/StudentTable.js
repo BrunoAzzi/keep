@@ -24,7 +24,9 @@ export const StudentTable = ({ data }) => {
                 accessor: 'name',
                 Cell: ({ row }) => (
                     <FlexRowCentered>
-                        <AvatarWithMargin image={row.original.avatar} />
+                        {row.original.avatar && (
+                            <AvatarWithMargin image={row.original.avatar} />
+                        )}
                         <span>{row.original.name}</span>
                     </FlexRowCentered>
                 )
@@ -32,10 +34,13 @@ export const StudentTable = ({ data }) => {
             {
                 Header: 'Turmas',
                 accessor: 'classList',
-                Cell: row =>
-                    row.row.original.classList.map(classData => (
+                Cell: row => {
+                    const classList = row.row.original.classList || [];
+
+                    return classList.map(classData => (
                         <Tag key={classData.id}>{classData.name}</Tag>
-                    ))
+                    ));
+                }
             },
             {
                 Header: 'Local de residencia',
@@ -43,14 +48,8 @@ export const StudentTable = ({ data }) => {
             },
             {
                 Header: 'Status',
-                accessor: 'status',
+                accessor: 'isActive',
                 Cell: StatusCell
-            },
-            {
-                Header: 'Finalização',
-                accessor: 'endDate',
-                collapse: true,
-                Cell: row => moment(row.row.original.endDate).calendar()
             }
         ],
         []

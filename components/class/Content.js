@@ -108,25 +108,23 @@ export const Content = ({ studentList }) => {
 
     const handleSelect = value => setSelectedList(value);
 
-    const handleSubmit = ({
-        name,
-        finalDate,
-        initialDate,
-        finalTime,
-        initialTime,
-        category
-    }) => {
-        axios.post('/api/class', {
-            name,
-            teacher,
-            endDate: `${finalDate}T${finalTime}:00`,
-            startDate: `${initialDate}T${initialTime}:00`,
-            categoryList: category ? category.split(',') : [],
-            studentList: selectedList,
-            week
-        });
-
-        // actions.setSubmitting(false);
+    const handleSubmit = (
+        { name, finalDate, initialDate, finalTime, initialTime, category },
+        actions
+    ) => {
+        axios
+            .post('/api/class', {
+                name,
+                teacher,
+                endDate: `${finalDate}T${finalTime}:00`,
+                startDate: `${initialDate}T${initialTime}:00`,
+                categoryList: category ? category.split(',') : [],
+                studentList: selectedList,
+                week
+            })
+            .finally(() => {
+                actions.setSubmitting(false);
+            });
     };
 
     return (
@@ -240,7 +238,10 @@ export const Content = ({ studentList }) => {
                             </Column>
                         </RowStretch>
                         <FlexRowReverse>
-                            <Button disabled={!dirty} type="submit">
+                            <Button
+                                disabled={isSubmitting || !dirty}
+                                type="submit"
+                            >
                                 Salvar
                             </Button>
                         </FlexRowReverse>
