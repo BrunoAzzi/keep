@@ -7,6 +7,7 @@ const Wrapper = styled(FlexRowReverse)`
     position: fixed;
     width: 100vw;
     height: 100vh;
+    z-index: 2;
 `;
 
 const DropShadow = styled(FlexRow)`

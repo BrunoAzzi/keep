@@ -18,6 +18,7 @@ import { WeekDaySelect, pluralTranslation } from '@components/WeekDaySelect';
 import { Button } from '@components/Button';
 import CalendarVector from '../../public/icons/calendar.svg';
 import ClockVector from '../../public/icons/clock.svg';
+import { useStudentSidebarContext } from '@components/sidebars/StudentSidebar';
 
 const Column = styled(FlexColumn)`
     flex: 1 1 50%;
@@ -93,6 +94,9 @@ const StretchForm = styled(Form)`
 export const Content = ({ studentList }) => {
     const router = useRouter();
     const { id: teacher } = router.query;
+
+    const [open, setOpen] = useStudentSidebarContext();
+    const openCreateStudentSidebar = () => setOpen(true);
 
     const [selectedList, setSelectedList] = useState([]);
     const [week, setWeek] = useState([]);
@@ -227,6 +231,7 @@ export const Content = ({ studentList }) => {
                                 />
                                 <CardStretch>
                                     <CardHeader
+                                        onAddClick={openCreateStudentSidebar}
                                         total={studentList.length}
                                         title="Alunos"
                                     />
