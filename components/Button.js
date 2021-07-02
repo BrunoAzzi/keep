@@ -1,11 +1,13 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-    appearence: none;
+    appearance: none;
     border: none;
+    margin: 0;
     background: #595cff;
     border-radius: 5px;
     text-decoration: none;
+    line-height: 1em;
 
     font-weight: bold;
     font-size: 16px;
