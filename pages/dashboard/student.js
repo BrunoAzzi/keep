@@ -46,8 +46,8 @@ export async function getServerSideProps() {
 
 const SidebarButton = () => {
     const [open, setOpen] = useStudentSidebarContext();
-
-    return <Button onClick={() => setOpen(true)}>Inserir Aluno</Button>;
+    const openStudentSidebar = () => setOpen(true);
+    return <Button onClick={openStudentSidebar}>Inserir Aluno</Button>;
 };
 
 const DashboardClassList = ({ studentList = [], gaugeList = [] }) => {

@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { Header, Container } from '@components/index';
 import { FlexColumn } from '@components/styles/flex';
 import { StudentSidebarProvider } from '@components/sidebars/StudentSidebar';
+import { TeacherSidebarProvider } from '@components/sidebars/TeacherSidebar';
 
 const Wrapper = styled(FlexColumn)`
     height: 100%;
@@ -12,7 +13,9 @@ const Wrapper = styled(FlexColumn)`
 export const Layout = ({ children, user }) => (
     <Wrapper>
         <Header user={user} />
-        <StudentSidebarProvider>{children}</StudentSidebarProvider>
+        <StudentSidebarProvider>
+            <TeacherSidebarProvider>{children}</TeacherSidebarProvider>
+        </StudentSidebarProvider>
     </Wrapper>
 );
 

@@ -31,33 +31,33 @@ const StyledButton = styled(Button)`
 
 const personalData = {
     isActive: true,
-    name: 'a',
-    number: 'a',
-    birthDate: '1996-02-08',
-    age: 'a',
-    address: 'a',
-    phonenumber: 'a',
-    email: 'a',
-    parentName: 'a'
+    name: '',
+    number: '',
+    birthDate: '',
+    age: '',
+    address: '',
+    phonenumber: '',
+    email: '',
+    parentName: ''
 };
 
 const demographicData = {
-    schoolName: 'a',
-    scholarityLevel: 'a',
-    period: 'a',
-    shirtSize: 'a',
-    desiredInstrument: 'a',
-    scholarityRegistryInfo: 'a'
+    schoolName: '',
+    scholarityLevel: '',
+    period: '',
+    shirtSize: '',
+    desiredInstrument: '',
+    scholarityRegistryInfo: ''
 };
 
 const socioeconomicData = {
-    familyIncome: 'a',
-    parentSalaryLevel: 'a',
-    isParentWorking: 'a',
-    isParentReceivingPension: 'a',
-    pensionDescription: 'a',
-    typeOfResidence: 'a',
-    rentValue: 'a'
+    familyIncome: '',
+    parentSalaryLevel: '',
+    isParentWorking: '',
+    isParentReceivingPension: '',
+    pensionDescription: '',
+    typeOfResidence: '',
+    rentValue: ''
 };
 
 const initialData = {

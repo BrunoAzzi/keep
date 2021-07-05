@@ -1,5 +1,6 @@
+import { FieldArray } from 'formik';
 import styled from 'styled-components';
-import { FlexRowCentered } from './styles/flex';
+import { FlexColumn, FlexRowCentered } from './styles/flex';
 
 const initialValue = [
     'monday',
@@ -54,7 +55,19 @@ const Button = styled.button`
     }
 `;
 
-export const WeekDaySelect = ({ onChange: setWeek, value: week }) => {
+const Label = styled.span`
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 150%;
+    margin-bottom: 12px;
+
+    letter-spacing: 0.01em;
+
+    color: #6f7482;
+`;
+
+export const WeekDaySelect = ({ onChange: setWeek, value: week, label }) => {
     const toggle = ({ target }) => {
         const { name } = target;
 
@@ -62,6 +75,26 @@ export const WeekDaySelect = ({ onChange: setWeek, value: week }) => {
             ? setWeek(week.filter(weekday => weekday !== name))
             : setWeek([...week, name]);
     };
+
+    if (label)
+        return (
+            <FlexColumn>
+                {label && <Label>{label}</Label>}
+                <ButtonGroup>
+                    {initialValue.map(weekday => (
+                        <Button
+                            key={weekday}
+                            name={weekday}
+                            checked={week.includes(weekday)}
+                            onClick={toggle}
+                            type="button"
+                        >
+                            {translation[weekday]}
+                        </Button>
+                    ))}
+                </ButtonGroup>
+            </FlexColumn>
+        );
 
     return (
         <ButtonGroup>

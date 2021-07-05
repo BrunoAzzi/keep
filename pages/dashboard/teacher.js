@@ -12,7 +12,7 @@ import { ActionNav } from '@components/dashboard';
 import { handleTeacherList, teacherCollection } from 'serialize/teacher';
 import { studentCollection } from 'serialize/student';
 import { classCollection } from 'serialize/class';
-import { Teacher } from 'service/routes';
+import { useTeacherSidebarContext } from '@components/sidebars/TeacherSidebar';
 
 export async function getServerSideProps() {
     const teacherListResponse = await teacherCollection.get();
@@ -44,6 +44,12 @@ export async function getServerSideProps() {
     };
 }
 
+const SidebarButton = () => {
+    const [open, setOpen] = useTeacherSidebarContext();
+    const openTeacherSidebar = () => setOpen(true);
+    return <Button onClick={openTeacherSidebar}>Inserir Professor</Button>;
+};
+
 const DashboardClassList = ({ teacherList = [], gaugeList = [] }) => {
     const AuthUser = useAuthUser();
 
@@ -53,9 +59,7 @@ const DashboardClassList = ({ teacherList = [], gaugeList = [] }) => {
             <Section>
                 <Card>
                     <ActionNav>
-                        <Button as="a" href={Teacher.Create}>
-                            Inserir Professor
-                        </Button>
+                        <SidebarButton />
                     </ActionNav>
                     <Content>
                         <TeacherTable data={teacherList} />

@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { FlexRow, FlexColumn, FlexRowReverse } from '@components/styles/flex';
 import Notch from '../../public/notch.svg';
-import { useStudentSidebarContext } from '@components/sidebars/StudentSidebar';
 
 const Wrapper = styled(FlexRowReverse)`
     position: fixed;
@@ -45,18 +44,14 @@ const SideContent = styled(FlexRow)`
     z-index: 1;
 `;
 
-export const Sidebar = props => {
-    const [open, setOpen] = useStudentSidebarContext();
-
-    return (
-        <Wrapper>
-            <DropShadow onClick={() => setOpen(false)} />
-            <SideContent>
-                <FullHeight>
-                    <Notch />
-                </FullHeight>
-                <FormContainer {...props} />
-            </SideContent>
-        </Wrapper>
-    );
-};
+export const Sidebar = ({ onDropShadowClick, ...other }) => (
+    <Wrapper>
+        <DropShadow onClick={onDropShadowClick} />
+        <SideContent>
+            <FullHeight>
+                <Notch />
+            </FullHeight>
+            <FormContainer {...other} />
+        </SideContent>
+    </Wrapper>
+);
