@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { FlexRow, FlexColumn, FlexRowReverse } from '@components/styles/flex';
-import Notch from '../../public/notch.svg';
+import { Notch } from '@components/Notch';
 
 const Wrapper = styled(FlexRowReverse)`
     position: fixed;

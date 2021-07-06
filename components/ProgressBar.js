@@ -8,6 +8,7 @@ const Base = styled.div`
 
 const Wrapper = styled(Base)`
     background-color: #e6e6e6;
+    overflow: hidden;
 `;
 
 const Progress = styled(Base)`

@@ -1,4 +1,4 @@
-<svg preserveAspectRatio="xMinYMin meet" viewBox="0 0 252 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="xMaxYMin meet" viewBox="0 0 252 900" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M98.0853 559.289C80.2738 436.717 133.902 359.394 163.814 298.715C206.019 213.071 241.352 131.414 252 0H25V901H194.79C186.272 841.881 174.365 786.056 158.78 734.912C142.324 680.474 107.765 625.343 98.0853 559.289Z" fill="url(#paint0_linear)"/>
 <g filter="url(#filter0_d)">
 <path d="M25 2.3365e-05V901H54.7833C180 598 27.8455 615.118 54.7833 494C89.5936 337.78 211.065 139.59 86 0L75.8402 2.3365e-05H25Z" fill="#F5F9F9"/>
