@@ -5,11 +5,12 @@ import { Form } from '@components/Form';
 import { Input, InputRow } from '@components/Input';
 import { FlexColumn } from '@components/styles/flex';
 import { Title } from '@components/Title';
-import { Formik } from 'formik';
+import { ErrorMessage, Formik } from 'formik';
 import styled from 'styled-components';
 import { WeekDaySelect } from '@components/WeekDaySelect';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
+import { TeacherSchema } from 'serialize/teacher/TeacherSchema';
 
 const Subtitle = styled.h2`
     font-style: normal;
@@ -34,30 +35,30 @@ const StyledButton = styled(Button)`
 
 const personalData = {
     isActive: true,
-    name: 'a',
-    birthDate: '1996-02-08',
-    age: 'a',
-    address: 'a',
-    phonenumber: 'a',
-    secondaryPhonenumber: 'a',
-    email: 'a',
-    bloodType: 'a',
-    civilState: 'a',
-    scholarityLevel: 'a',
-    childrenQuantity: 'a',
-    major: 'a',
-    curriculumLate: 'a',
-    instrumentList: 'a',
+    name: '',
+    birthDate: '',
+    age: '',
+    address: '',
+    phonenumber: '',
+    secondaryPhonenumber: '',
+    email: '',
+    bloodType: '',
+    civilState: '',
+    scholarityLevel: '',
+    childrenQuantity: '',
+    major: '',
+    curriculumLate: '',
+    instrumentList: '',
     workdays: []
 };
 
 const bankData = {
-    bankName: 'a',
-    agency: 'a',
-    account: 'a',
-    accountType: 'a',
-    pixKey: 'a',
-    identifier: 'a'
+    bankName: '',
+    agency: '',
+    account: '',
+    accountType: '',
+    pixKey: '',
+    identifier: ''
 };
 
 const initialData = {
@@ -88,63 +89,152 @@ export const TeacherForm = () => {
     return (
         <Wrapper>
             <Title>Cadastro de Profressor</Title>
-            <Formik initialValues={initialData} onSubmit={handleSubmit}>
-                {({ isSubmitting, dirty }) => (
+            <Formik
+                initialValues={initialData}
+                onSubmit={handleSubmit}
+                validationSchema={TeacherSchema}
+            >
+                {({ isSubmitting, dirty, errors, touched }) => (
                     <Form>
                         <Subtitle>Dados Pessoais</Subtitle>
                         <Checkbox name="isActive" label="Ativo" />
-                        <Input name="name" label="Nome completo" />
+                        <Input
+                            name="name"
+                            label="Nome completo"
+                            error={errors.name}
+                            touched={touched.name}
+                        />
                         <InputRow>
                             <Input
                                 name="birthDate"
                                 type="date"
                                 label="Data de nascimento"
+                                error={errors.birthDate}
+                                touched={touched.birthDate}
                             />
-                            <Input name="age" label="Idade Atual" />
+                            <Input
+                                name="age"
+                                label="Idade Atual"
+                                error={errors.age}
+                                touched={touched.age}
+                            />
                         </InputRow>
-                        <Input name="address" label="Endereço" />
+                        <Input
+                            name="address"
+                            label="Endereço"
+                            error={errors.address}
+                            touched={touched.address}
+                        />
                         <InputRow>
-                            <Input name="phonenumber" label="Telefone" />
+                            <Input
+                                name="phonenumber"
+                                label="Telefone"
+                                error={errors.phonenumber}
+                                touched={touched.phonenumber}
+                            />
                             <Input
                                 name="secondaryPhonenumber"
                                 label="Telefone de recado"
+                                error={errors.secondaryPhonenumber}
+                                touched={touched.secondaryPhonenumber}
                             />
                         </InputRow>
-                        <Input name="email" label="E-mail" />
+                        <Input
+                            name="email"
+                            label="E-mail"
+                            error={errors.email}
+                            touched={touched.email}
+                        />
                         <InputRow>
-                            <Input name="bloodType" label="Tipo sanguíneo" />
-                            <Input name="civilState" label="Estado civil" />
+                            <Input
+                                name="bloodType"
+                                label="Tipo sanguíneo"
+                                error={errors.bloodType}
+                                touched={touched.bloodType}
+                            />
+                            <Input
+                                name="civilState"
+                                label="Estado civil"
+                                error={errors.civilState}
+                                touched={touched.civilState}
+                            />
                         </InputRow>
                         <InputRow>
                             <Input
                                 name="scholarityLevel"
                                 label="Escolaridade"
+                                error={errors.scholarityLevel}
+                                touched={touched.scholarityLevel}
                             />
                             <Input
                                 name="childrenQuantity"
                                 label="Quantidade de filhos"
+                                error={errors.childrenQuantity}
+                                touched={touched.childrenQuantity}
                             />
                         </InputRow>
-                        <Input name="major" label="Área de formação" />
-                        <Input name="curriculumLate" label="Curriculum late" />
+                        <Input
+                            name="major"
+                            label="Área de formação"
+                            error={errors.major}
+                            touched={touched.major}
+                        />
+                        <Input
+                            name="curriculumLate"
+                            label="Curriculum late"
+                            error={errors.curriculumLate}
+                            touched={touched.curriculumLate}
+                        />
                         <Input
                             name="instrumentList"
                             label="Instrumentos que o professor ensina:"
+                            error={errors.instrumentList}
+                            touched={touched.instrumentList}
                         />
 
                         <Subtitle>Dados Bancários</Subtitle>
 
-                        <Input name="bankName" label="Nome do banco" />
+                        <Input
+                            name="bankName"
+                            label="Nome do banco"
+                            error={errors.bankName}
+                            touched={touched.bankName}
+                        />
                         <InputRow>
-                            <Input name="agency" label="Agência" />
-                            <Input name="account" label="Conta" />
+                            <Input
+                                name="agency"
+                                label="Agência"
+                                error={errors.agency}
+                                touched={touched.agency}
+                            />
+                            <Input
+                                name="account"
+                                label="Conta"
+                                error={errors.account}
+                                touched={touched.account}
+                            />
                         </InputRow>
                         <InputRow>
-                            <Input name="accountType" label="Tipo de conta" />
-                            <Input name="pixKey" label="Chave pix" />
+                            <Input
+                                name="accountType"
+                                label="Tipo de conta"
+                                error={errors.accountType}
+                                touched={touched.accountType}
+                            />
+                            <Input
+                                name="pixKey"
+                                label="Chave pix"
+                                error={errors.pixKey}
+                                touched={touched.pixKey}
+                            />
                         </InputRow>
 
-                        <Input name="identifier" label="CNPJ/MEI" />
+                        <Input
+                            name="identifier"
+                            label="CNPJ/MEI"
+                            error={errors.identifier}
+                            touched={touched.identifier}
+                        />
                         <WeekDaySelect
                             label="Dias da semana em que trabalha:"
                             name="workdays"
