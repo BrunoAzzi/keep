@@ -6,6 +6,7 @@ import {
 } from '@components/styles/flex';
 import { Tag } from '@components/Tag';
 import { Heading } from '@components/Title';
+import { pluralTranslation } from '@components/WeekDaySelect';
 
 const Section = styled.section`
     margin: 40px 0;
@@ -72,14 +73,16 @@ export const TeacherProfile = ({ teacher }) => (
         </Wrapper>
         <Heading>Habilidades</Heading>
         <TagGroup>
-            {teacher.categoryList.map(category => (
-                <SkillTag key={category}>{category}</SkillTag>
+            {teacher.instrumentList.map(instrument => (
+                <SkillTag key={instrument}>{instrument}</SkillTag>
             ))}
         </TagGroup>
         <Heading>Dias da semana</Heading>
         <TagGroup>
-            {teacher.categoryList.map(category => (
-                <ScheduleTag key={category}>{category}</ScheduleTag>
+            {teacher.workdays.map(weekday => (
+                <ScheduleTag key={weekday}>
+                    {pluralTranslation[weekday]}
+                </ScheduleTag>
             ))}
         </TagGroup>
     </Section>

@@ -7,7 +7,7 @@ import { FlexColumn } from '@components/styles/flex';
 import { Title } from '@components/Title';
 import { Formik } from 'formik';
 import styled from 'styled-components';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 
 const Subtitle = styled.h2`
     font-style: normal;
@@ -68,6 +68,8 @@ const initialData = {
 };
 
 export const StudentForm = () => {
+    const router = useRouter();
+
     const handleSubmit = (values, actions) => {
         axios
             .post('/api/student', {
@@ -75,7 +77,7 @@ export const StudentForm = () => {
                 birthDate: values.birthDate + 'T00:00:00'
             })
             .then(() => {
-                router.push(Dashboard.List.Student);
+                router.reload();
             })
             .catch(() => {
                 actions.setSubmitting(false);

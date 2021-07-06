@@ -7,18 +7,20 @@ export const teacherCollection = getFirebaseAdmin()
 
 export const serializeTeacher = teacherData => ({
     ...teacherData,
-    endDate: new Date(teacherData.endDate._seconds * 1000).toString()
+    birthDate: new Date(teacherData.birthDate._seconds * 1000).toString()
 });
 
 export const handleTeacherReference = async (
     teacherReference,
     config = { shallow: true }
 ) => {
-    // const teacherResponse = teacherReference.ref
-    //     ? await teacherReference.ref.get() // When it is a QueryDocumentSnapshot we get its DocumentReference before get
-    //     : await teacherReference.get(); //When it is a DocumentReference there is no need to prepare
+    console.log(teacherReference);
+    const teacherResponse = teacherReference.ref
+        ? await teacherReference.ref.get() // When it is a QueryDocumentSnapshot we get its DocumentReference before get
+        : await teacherReference.get(); //When it is a DocumentReference there is no need to prepare
 
-    const teacherData = await teacherReference.data();
+    const teacherData = await teacherResponse.data();
+
     const serializedTeacher = {
         ...serializeTeacher(teacherData),
         id: teacherReference.id

@@ -34,9 +34,9 @@ export const handleClassReference = async (
     }
 
     const studentList = await handleStudentList(classData.studentList);
-    const teacherData = await handleTeacherReference(
-        await classData.teacher.get()
-    );
+    const teacherData = await handleTeacherReference(classData.teacher, {
+        shallow: true
+    });
 
     return {
         ...serializedClass,

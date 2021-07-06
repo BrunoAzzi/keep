@@ -31,10 +31,10 @@ export const TeacherTable = ({ data }) => {
             },
             {
                 Header: 'Especialidades',
-                accessor: 'categoryList',
+                accessor: 'instrumentList',
                 Cell: row =>
-                    row.row.original.categoryList.map(category => (
-                        <Tag key={category}>{category}</Tag>
+                    row.row.original.instrumentList.map(instrument => (
+                        <Tag key={instrument}>{instrument}</Tag>
                     ))
             },
             {
@@ -45,12 +45,6 @@ export const TeacherTable = ({ data }) => {
                 Header: 'Status',
                 accessor: 'status',
                 Cell: StatusCell
-            },
-            {
-                Header: 'Finalização',
-                accessor: 'endDate',
-                collapse: true,
-                Cell: row => moment(row.row.original.endDate).calendar()
             }
         ],
         []

@@ -17,16 +17,32 @@ export const Pagination = ({
     canNextPage
 }) => (
     <Wrapper>
-        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
+        <button
+            type="button"
+            onClick={() => gotoPage(0)}
+            disabled={!canPreviousPage}
+        >
             {'<<'}
         </button>{' '}
-        <button onClick={() => previousPage()} disabled={!canPreviousPage}>
+        <button
+            type="button"
+            onClick={() => previousPage()}
+            disabled={!canPreviousPage}
+        >
             {'<'}
         </button>{' '}
-        <button onClick={() => nextPage()} disabled={!canNextPage}>
+        <button
+            type="button"
+            onClick={() => nextPage()}
+            disabled={!canNextPage}
+        >
             {'>'}
         </button>{' '}
-        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
+        <button
+            type="button"
+            onClick={() => gotoPage(pageCount - 1)}
+            disabled={!canNextPage}
+        >
             {'>>'}
         </button>{' '}
         <span>

@@ -9,6 +9,9 @@ const handler = async (req, res) => {
         console.log(req.body.birthDate);
         const serialized = {
             ...req.body,
+            avatar:
+                req.body.avatar ||
+                `https://www.gravatar.com/avatar/00000000000000000000000000000000?d=mp&f=y`,
             birthDate: getFirebaseAdmin().firestore.Timestamp.fromDate(
                 new Date(req.body.birthDate)
             )

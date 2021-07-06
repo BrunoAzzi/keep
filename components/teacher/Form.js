@@ -9,7 +9,7 @@ import { Formik } from 'formik';
 import styled from 'styled-components';
 import { WeekDaySelect } from '@components/WeekDaySelect';
 import { useState } from 'react';
-import router from 'next/router';
+import { useRouter } from 'next/router';
 
 const Subtitle = styled.h2`
     font-style: normal;
@@ -66,6 +66,7 @@ const initialData = {
 };
 
 export const TeacherForm = () => {
+    const router = useRouter();
     const [workdays, setWorkdays] = useState([]);
 
     const handleSubmit = (values, actions) => {
@@ -73,10 +74,11 @@ export const TeacherForm = () => {
             .post('/api/teacher', {
                 ...values,
                 birthDate: values.birthDate + 'T00:00:00',
+                instrumentList: values.instrumentList.split(',') || [],
                 workdays
             })
             .then(() => {
-                router.push(Dashboard.List.Teacher);
+                router.reload();
             })
             .catch(() => {
                 actions.setSubmitting(false);

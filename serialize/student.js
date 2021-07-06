@@ -7,7 +7,9 @@ export const studentCollection = getFirebaseAdmin()
 
 export const serializeStudent = student => ({
     ...student,
-    birthDate: new Date(student.birthDate._seconds * 1000).toString()
+    birthDate: student.bithDate
+        ? new Date(student.birthDate._seconds * 1000).toString()
+        : Date.now().toString()
 });
 
 export const handleStudentReference = async studentReference => {

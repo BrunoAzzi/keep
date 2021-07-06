@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useMemo } from 'react';
 import { useTable, usePagination } from 'react-table';
-import { Table } from '@components/Table';
+import { TableWithPagination } from '@components/Table';
 import { Avatar } from '@components/Avatar';
 import { FlexRowCentered } from '@components/styles/flex';
 
@@ -16,6 +16,7 @@ const Title = styled.span`
 `;
 
 export const StudentList = ({ data, onSelect }) => {
+    const initialState = { pageIndex: 0, pageSize: 7 };
     const selectedList = [];
 
     const toggleInList = ({ target }) => {
@@ -52,7 +53,9 @@ export const StudentList = ({ data, onSelect }) => {
         []
     );
 
-    const tableProps = useTable({ columns, data }, usePagination);
+    const tableProps = useTable({ columns, data, initialState }, usePagination);
 
-    return <Table head={false} size={data.length} {...tableProps} />;
+    return (
+        <TableWithPagination head={false} size={data.length} {...tableProps} />
+    );
 };

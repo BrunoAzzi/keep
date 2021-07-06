@@ -28,7 +28,7 @@ const SetupClass = ({ teacher, studentList }) => {
             <ImageLayout content={<Content studentList={studentList} />}>
                 <Title>Configurar Turma</Title>
                 <TeacherProfile teacher={teacher} />
-                <ReportCardSection />
+                {/* <ReportCardSection /> */}
             </ImageLayout>
         </Layout>
     );
