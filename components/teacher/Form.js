@@ -74,7 +74,10 @@ export const TeacherForm = () => {
                 birthDate: values.birthDate + 'T00:00:00',
                 workdays
             })
-            .then(() => actions.setSubmitting(false));
+            .then(() => {
+                actions.setSubmitting(false);
+                router.push(Dashboard.List.Student);
+            });
     };
 
     return (

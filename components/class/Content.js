@@ -19,6 +19,7 @@ import { Button } from '@components/Button';
 import CalendarVector from '../../public/icons/calendar.svg';
 import ClockVector from '../../public/icons/clock.svg';
 import { useStudentSidebarContext } from '@components/sidebars/StudentSidebar';
+import { Dashboard } from 'service/routes';
 
 const Column = styled(FlexColumn)`
     flex: 1 1 50%;
@@ -125,6 +126,9 @@ export const Content = ({ studentList }) => {
                 categoryList: category ? category.split(',') : [],
                 studentList: selectedList,
                 week
+            })
+            .then(() => {
+                router.push(Dashboard.List.Class);
             })
             .finally(() => {
                 actions.setSubmitting(false);

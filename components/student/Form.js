@@ -73,7 +73,10 @@ export const StudentForm = () => {
                 ...values,
                 birthDate: values.birthDate + 'T00:00:00'
             })
-            .then(() => actions.setSubmitting(false));
+            .then(() => {
+                actions.setSubmitting(false);
+                router.push(Dashboard.List.Student);
+            });
     };
 
     return (
