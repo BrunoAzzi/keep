@@ -14,6 +14,11 @@ const inputStyle = css`
     width: 100%;
     margin: 0;
     margin-bottom: 16px;
+
+    ${({ error }) => `
+        border-color: ${error ? 'red' : '#6f7482'};
+        color: ${error ? 'red' : '#6f7482'};
+    `}
 `;
 
 const TextArea = styled(BaseTextarea)`
@@ -29,7 +34,7 @@ const Label = styled.span`
 
     letter-spacing: 0.01em;
 
-    color: #6f7482;
+    ${({ error }) => `color: ${error ? 'red' : '#6f7482'};`}
 `;
 
 const BaseInput = styled(Field)`
@@ -55,23 +60,23 @@ export const InputRow = styled(FlexRowCentered)`
     }
 `;
 
-export const Input = ({ label, as, ...other }) => {
+export const Input = ({ label, error, touched, as, ...other }) => {
     if (label) {
         return (
             <FlexColumn>
-                <Label>{label}</Label>
+                <Label error={error && touched}>{label}</Label>
                 {as === 'textarea' ? (
-                    <TextArea {...other} />
+                    <TextArea error={error && touched} {...other} />
                 ) : (
-                    <BaseInput {...other} />
+                    <BaseInput error={error && touched} {...other} />
                 )}
             </FlexColumn>
         );
     } else {
         return as === 'textarea' ? (
-            <TextAreaWithMargin {...other} />
+            <TextAreaWithMargin error={error && touched} {...other} />
         ) : (
-            <InputWithMargin {...other} />
+            <InputWithMargin error={error && touched} {...other} />
         );
     }
 };

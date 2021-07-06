@@ -5,7 +5,7 @@ import { Layout, ImageLayout } from '@components/Layout';
 import { Title } from '@components/Title';
 import { handleTeacherReference, teacherCollection } from 'serialize/teacher';
 import { TeacherProfile } from '@components/class/TeacherProfile';
-import { ReportCardSection } from '@components/class/ReportCardSection';
+// import { ReportCardSection } from '@components/class/ReportCardSection';
 import { Content } from '@components/class/Content';
 import { handleStudentList, studentCollection } from 'serialize/student';
 

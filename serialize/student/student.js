@@ -1,5 +1,5 @@
 import { getFirebaseAdmin } from 'next-firebase-auth';
-import { classCollection } from './class';
+import { classCollection } from '../class';
 
 export const studentCollection = getFirebaseAdmin()
     .firestore()
