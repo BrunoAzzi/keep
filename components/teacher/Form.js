@@ -9,6 +9,7 @@ import { Formik } from 'formik';
 import styled from 'styled-components';
 import { WeekDaySelect } from '@components/WeekDaySelect';
 import { useState } from 'react';
+import router from 'next/router';
 
 const Subtitle = styled.h2`
     font-style: normal;
@@ -75,8 +76,10 @@ export const TeacherForm = () => {
                 workdays
             })
             .then(() => {
+                router.push(Dashboard.List.Teacher);
+            })
+            .catch(() => {
                 actions.setSubmitting(false);
-                router.push(Dashboard.List.Student);
             });
     };
 

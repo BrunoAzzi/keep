@@ -130,7 +130,7 @@ export const Content = ({ studentList }) => {
             .then(() => {
                 router.push(Dashboard.List.Class);
             })
-            .finally(() => {
+            .catch(() => {
                 actions.setSubmitting(false);
             });
     };

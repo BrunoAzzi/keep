@@ -7,6 +7,7 @@ import { FlexColumn } from '@components/styles/flex';
 import { Title } from '@components/Title';
 import { Formik } from 'formik';
 import styled from 'styled-components';
+import router from 'next/router';
 
 const Subtitle = styled.h2`
     font-style: normal;
@@ -74,8 +75,10 @@ export const StudentForm = () => {
                 birthDate: values.birthDate + 'T00:00:00'
             })
             .then(() => {
-                actions.setSubmitting(false);
                 router.push(Dashboard.List.Student);
+            })
+            .catch(() => {
+                actions.setSubmitting(false);
             });
     };
 
