@@ -1,6 +1,6 @@
 import { getFirebaseAdmin } from 'next-firebase-auth';
-import { handleStudentList } from './student';
-import { handleTeacherReference, serializeTeacher } from './teacher';
+import { handleStudentList } from '../student';
+import { handleTeacherReference, serializeTeacher } from '../teacher';
 
 export const classCollection = getFirebaseAdmin()
     .firestore()

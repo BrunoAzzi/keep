@@ -20,6 +20,7 @@ import CalendarVector from '../../public/icons/calendar.svg';
 import ClockVector from '../../public/icons/clock.svg';
 import { useStudentSidebarContext } from '@components/sidebars/StudentSidebar';
 import { Dashboard } from 'service/routes';
+import { ClassSchema } from 'serialize/class/ClassSchema';
 
 const Column = styled(FlexColumn)`
     flex: 1 1 50%;
@@ -137,14 +138,20 @@ export const Content = ({ studentList }) => {
 
     return (
         <ColumnStretch>
-            <Formik onSubmit={handleSubmit} initialValues={initialValues}>
-                {({ values, isSubmitting, dirty, actions }) => (
+            <Formik
+                onSubmit={handleSubmit}
+                initialValues={initialValues}
+                validationSchema={ClassSchema}
+            >
+                {({ values, isSubmitting, dirty, errors, touched }) => (
                     <StretchForm>
                         <RowStretch>
                             <Column>
                                 <StyledInput
                                     name="name"
                                     placeholder="Nome da turma"
+                                    error={errors.name}
+                                    touched={touched.name}
                                 />
                                 <CardStretch footer>
                                     <InputRow>
@@ -153,6 +160,8 @@ export const Content = ({ studentList }) => {
                                             <Input
                                                 name="initialDate"
                                                 type="date"
+                                                error={errors.initialDate}
+                                                touched={touched.initialDate}
                                             />
                                         </InputGroup>
                                         <InputGroup>
@@ -160,6 +169,8 @@ export const Content = ({ studentList }) => {
                                             <Input
                                                 name="finalDate"
                                                 type="date"
+                                                error={errors.finalDate}
+                                                touched={touched.finalDate}
                                             />
                                         </InputGroup>
                                     </InputRow>
@@ -169,6 +180,8 @@ export const Content = ({ studentList }) => {
                                             <Input
                                                 name="initialTime"
                                                 type="time"
+                                                error={errors.initialTime}
+                                                touched={touched.initialTime}
                                             />
                                         </InputGroup>
                                         <InputGroup>
@@ -176,6 +189,8 @@ export const Content = ({ studentList }) => {
                                             <Input
                                                 name="finalTime"
                                                 type="time"
+                                                error={errors.finalTime}
+                                                touched={touched.finalTime}
                                             />
                                         </InputGroup>
                                     </InputRow>
@@ -232,6 +247,8 @@ export const Content = ({ studentList }) => {
                                 <StyledInput
                                     name="category"
                                     placeholder="Categoria"
+                                    error={errors.category}
+                                    touched={touched.category}
                                 />
                                 <CardStretch>
                                     <CardHeader
