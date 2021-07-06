@@ -6,7 +6,6 @@ initAuth();
 
 const handler = async (req, res) => {
     try {
-        console.log(req.body.birthDate);
         const serialized = {
             ...req.body,
             avatar:

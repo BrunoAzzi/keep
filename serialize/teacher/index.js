@@ -14,7 +14,6 @@ export const handleTeacherReference = async (
     teacherReference,
     config = { shallow: true }
 ) => {
-    console.log(teacherReference);
     const teacherResponse = teacherReference.ref
         ? await teacherReference.ref.get() // When it is a QueryDocumentSnapshot we get its DocumentReference before get
         : await teacherReference.get(); //When it is a DocumentReference there is no need to prepare
