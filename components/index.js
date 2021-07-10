@@ -1,6 +1,6 @@
 export * from './Layout';
 export * from './Table';
-export * from './Header';
+export * from './TopNavbar';
 export * from './Pagination';
 export * from './Title';
 export * from './ProgressBar';

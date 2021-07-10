@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Header, Container } from '@components/index';
+import { TopNavbar, Container } from '@components/index';
 import { FlexColumn } from '@components/styles/flex';
 import { StudentSidebarProvider } from '@components/sidebars/StudentSidebar';
 import { TeacherSidebarProvider } from '@components/sidebars/TeacherSidebar';
@@ -12,7 +12,7 @@ const Wrapper = styled(FlexColumn)`
 
 export const Layout = ({ children, user }) => (
     <Wrapper>
-        <Header user={user} />
+        <TopNavbar user={user} />
         <StudentSidebarProvider>
             <TeacherSidebarProvider>{children}</TeacherSidebarProvider>
         </StudentSidebarProvider>
