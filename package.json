@@ -5,6 +5,8 @@
     "scripts": {
         "dev": "next dev",
         "build": "next build",
+        "lint": "eslint ./",
+        "test": "jest --passWithNoTests",
         "start": "next start",
         "prepare": "husky install"
     },
@@ -27,6 +29,8 @@
     "devDependencies": {
         "@firebase/app-types": "^0.6.2",
         "@svgr/webpack": "^5.5.0",
+        "@testing-library/jest-dom": "^5.14.1",
+        "@testing-library/react": "^12.0.0",
         "babel-plugin-styled-components": "^1.13.1",
         "eslint": "^7.30.0",
         "eslint-config-prettier": "^8.3.0",
@@ -38,6 +42,7 @@
         "eslint-plugin-react-hooks": "^4.2.0",
         "firebase": "^8.6.2",
         "husky": ">=6",
+        "jest": "^27.0.6",
         "lint-staged": "^10.2.11",
         "next-firebase-auth": "^0.13.1",
         "prettier": "^2.3.2",
