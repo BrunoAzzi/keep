@@ -13,8 +13,14 @@ import { classCollection, handleClassList } from 'serialize/class';
 import { teacherCollection } from 'serialize/teacher';
 import { studentCollection } from 'serialize/student';
 import { Class } from 'service/routes';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { branchCollection, handleBranchList } from 'serialize/branch';
 
 export async function getServerSideProps() {
+    const branchListResponse = await branchCollection.get();
+    const branchList = await handleBranchList(branchListResponse.docs);
+
     const classListResponse = await classCollection.get();
     const classList = await handleClassList(classListResponse.docs, {
         shallow: false
@@ -25,6 +31,7 @@ export async function getServerSideProps() {
     return {
         props: {
             classList,
+            branchList,
             gaugeList: [
                 {
                     indicator: 'Estudantes',
@@ -46,18 +53,30 @@ export async function getServerSideProps() {
     };
 }
 
-const DashboardClassList = ({ classList = [], gaugeList = [] }) => {
+const DashboardClassList = ({
+    classList = [],
+    gaugeList = [],
+    branchList = []
+}) => {
+    const router = useRouter();
+    const { branch } = router.query;
     const AuthUser = useAuthUser();
 
     return (
-        <ContainerLayout user={AuthUser}>
+        <ContainerLayout user={AuthUser} branchList={branchList}>
             <GaugeGroup data={gaugeList} />
             <Section>
                 <Card>
                     <ActionNav>
-                        <Button as="a" href={Class.Create.SelectTeacher}>
-                            Criar nova turma
-                        </Button>
+                        <Link
+                            passHref
+                            href={{
+                                pathname: Class.Create.SelectTeacher,
+                                query: { branch }
+                            }}
+                        >
+                            <Button as="a">Criar nova turma</Button>
+                        </Link>
                     </ActionNav>
                     <Content>
                         <ClassTable data={classList} />

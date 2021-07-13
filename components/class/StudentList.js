@@ -4,6 +4,7 @@ import { useTable, usePagination } from 'react-table';
 import { TableWithPagination } from '@components/Table';
 import { Avatar } from '@components/Avatar';
 import { FlexRowCentered } from '@components/styles/flex';
+import { Checkbox } from '@components/Checkbox';
 
 const Title = styled.span`
     font-style: normal;
@@ -15,9 +16,8 @@ const Title = styled.span`
     margin-left: 10px;
 `;
 
-export const StudentList = ({ data, onSelect }) => {
+export const StudentList = ({ data, onSelect, selectedList = [] }) => {
     const initialState = { pageIndex: 0, pageSize: 7 };
-    const selectedList = [];
 
     const toggleInList = ({ target }) => {
         const { checked, name } = target;
@@ -32,9 +32,9 @@ export const StudentList = ({ data, onSelect }) => {
             {
                 accessor: 'action',
                 Cell: ({ row }) => (
-                    <input
+                    <Checkbox
                         name={row.original.id}
-                        type="checkbox"
+                        checked={selectedList.includes(row.original.id)}
                         onChange={toggleInList}
                     />
                 ),
@@ -50,7 +50,7 @@ export const StudentList = ({ data, onSelect }) => {
                 )
             }
         ],
-        []
+        [selectedList]
     );
 
     const tableProps = useTable({ columns, data, initialState }, usePagination);

@@ -95,7 +95,7 @@ const StretchForm = styled(Form)`
 
 export const Content = ({ studentList }) => {
     const router = useRouter();
-    const { id: teacher } = router.query;
+    const { teacher, branch } = router.query;
 
     const [open, setOpen] = useStudentSidebarContext();
     const openCreateStudentSidebar = () => setOpen(true);
@@ -112,8 +112,6 @@ export const Content = ({ studentList }) => {
         finalTime: ''
     };
 
-    const handleSelect = value => setSelectedList(value);
-
     const handleSubmit = (
         { name, finalDate, initialDate, finalTime, initialTime, category },
         actions
@@ -129,7 +127,10 @@ export const Content = ({ studentList }) => {
                 week
             })
             .then(() => {
-                router.push(Dashboard.List.Class);
+                router.push({
+                    pathname: Dashboard.List.Class,
+                    query: { branch }
+                });
             })
             .catch(() => {
                 actions.setSubmitting(false);
@@ -258,7 +259,8 @@ export const Content = ({ studentList }) => {
                                     />
                                     <StudentList
                                         data={studentList}
-                                        onSelect={handleSelect}
+                                        selectedList={selectedList}
+                                        onSelect={setSelectedList}
                                     />
                                 </CardStretch>
                             </Column>

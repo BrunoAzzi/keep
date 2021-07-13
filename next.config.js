@@ -11,7 +11,12 @@ module.exports = {
         return [
             {
                 source: '/',
-                destination: '/dashboard/class',
+                destination: '/branch',
+                permanent: true
+            },
+            {
+                source: '/branch/[branch]',
+                destination: '/branch/[branch]/dashboard/class',
                 permanent: true
             }
         ];

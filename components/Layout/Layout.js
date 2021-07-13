@@ -10,18 +10,18 @@ const Wrapper = styled(FlexColumn)`
     overflow: auto;
 `;
 
-export const Layout = ({ children, user }) => (
+export const Layout = ({ children, user, branchList = [] }) => (
     <Wrapper>
-        <TopNavbar user={user} />
+        <TopNavbar user={user} branchList={branchList} />
         <StudentSidebarProvider>
             <TeacherSidebarProvider>{children}</TeacherSidebarProvider>
         </StudentSidebarProvider>
     </Wrapper>
 );
 
-export const ContainerLayout = ({ children, user }) => {
+export const ContainerLayout = ({ children, user, branchList = [] }) => {
     return (
-        <Layout user={user}>
+        <Layout user={user} branchList={branchList}>
             <Container>{children}</Container>
         </Layout>
     );

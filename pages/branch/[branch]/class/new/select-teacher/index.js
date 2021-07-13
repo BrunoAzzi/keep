@@ -27,7 +27,14 @@ export async function getServerSideProps() {
 const CreateClass = ({ teacherList }) => {
     const AuthUser = useAuthUser();
 
-    const navigateTo = path => row => router.push(path + row.original.id);
+    const navigateTo = path => row =>
+        router.push({
+            pathname: path,
+            query: {
+                teacher: row.original.id,
+                branch: router.query.branch
+            }
+        });
 
     return (
         <Layout user={AuthUser}>

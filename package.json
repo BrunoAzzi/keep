@@ -50,6 +50,9 @@
         "yup": "^0.32.9"
     },
     "lint-staged": {
-        "*.js": "eslint --cache --fix"
+        "*.js": [
+            "eslint --cache --fix",
+            "git add"
+        ]
     }
 }

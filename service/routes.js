@@ -1,22 +1,14 @@
 export const Class = {
     Create: {
-        SelectTeacher: '/class/new/select-teacher',
-        SetupClass: '/class/new/select-teacher/'
+        SelectTeacher: '/branch/[branch]/class/new/select-teacher',
+        SetupClass: '/branch/[branch]/class/new/select-teacher/[teacher]'
     }
-};
-
-export const Teacher = {
-    Create: '/teacher/new'
-};
-
-export const Student = {
-    Create: '/student/new'
 };
 
 export const Dashboard = {
     List: {
-        Student: '/dashboard/student',
-        Teacher: '/dashboard/teacher',
-        Class: '/dashboard/class'
+        Student: '/branch/[branch]/dashboard/student',
+        Teacher: '/branch/[branch]/dashboard/teacher',
+        Class: '/branch/[branch]/dashboard/class'
     }
 };
