@@ -1,3 +1,4 @@
+import { AuthAction, withAuthUser } from 'next-firebase-auth';
 import { branchCollection, handleBranchList } from 'serialize/branch';
 
 export async function getServerSideProps({ req, res }) {
@@ -10,4 +11,8 @@ export async function getServerSideProps({ req, res }) {
     res.end();
 }
 
-export default () => <></>;
+const BranchIndexPage = () => <></>;
+
+export default withAuthUser({
+    whenUnauthedAfterInit: AuthAction.REDIRECT_TO_LOGIN
+})(BranchIndexPage);
